@@ -28,7 +28,7 @@ interface IUniswapV2Pair {
 }
 
 contract Arb is Ownable {
-
+	
 	function swap(address router, address _tokenIn, address _tokenOut, uint256 _amount) private {
 		IERC20(_tokenIn).approve(router, _amount);
 		address[] memory path;
@@ -77,14 +77,14 @@ contract Arb is Ownable {
 		return balance;
 	}
 	
-	function recoverEth() external onlyOwner {
+	function recoverCoins() external onlyOwner {
 		payable(msg.sender).transfer(address(this).balance);
-	}
+	} //this allows you to recover the host coin of the network you're on (MATIC/FTM/etc.),	 and a token address is not required
 
 	function recoverTokens(address tokenAddress) external onlyOwner {
 		IERC20 token = IERC20(tokenAddress);
 		token.transfer(msg.sender, token.balanceOf(address(this)));
-	}
+	} //this allows you to recover tokens, and requires a token address
 	
 	receive() external payable {}
 
