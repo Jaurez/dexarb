@@ -6,6 +6,7 @@ let config,arb,owner,inTrade,balances;
 const network = hre.network.name;
 if (network === 'aurora') config = require('./../config/aurora.json');
 if (network === 'fantom') config = require('./../config/fantom.json');
+if (network === 'polygonpos') config = require('./../config/polygonpos.json');
 
 console.log(`Loaded ${config.routes.length} routes`);
 
